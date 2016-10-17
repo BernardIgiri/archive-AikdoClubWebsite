@@ -1,0 +1,403 @@
+<html>
+<head>
+<title>UMD Aikido Club</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script>
+<!--
+/****************************EDIT THIS*********************/
+// Warning: Do not use double quotes
+
+//Time in miliseconds between the changing of the picture
+var picDelay=4000; // 1000 = 1 second
+// Number of pics to show
+var numOfPics=6;
+
+// NEWS
+// Set var marqueecontents="..." to the news update message
+var marqueecontents="The Aikido Club Website is now up and running."
+
+// SCHEDULE
+// Set data for class (NOTE: in html and not simplified)
+var classSchedule='<tr><td colspan="2"><b>Class</b></td></tr>'+
+'<tr><td colspan="2">Matt Room</td></tr>'+
+'<tr><td>TuTh</td><td align="right">8:00-10:00pm</td></tr>'+
+'<tr><td>Su</td><td align="right">1:30-3:00pm</td></tr>';
+
+// Event#1
+// Set to title of event
+var event1Title="";
+// Set to location of event
+var event1Location="";
+// Set to date of event
+var event1Date="";
+// Set to time of event
+var event1Time="";
+// If there is general info for event, enter it here
+var event1MoreInfo="";
+
+//Event#2
+var event2Title="";
+var event2Location="";
+var event2Date="";
+var event2Time="";
+var event2MoreInfo="";
+
+//Event#3 only 3 events will fit
+var event3Title="";
+var event3Location="";
+var event3Date="";
+var event3Time="";
+var event3MoreInfo="";
+
+// CONTACT
+// set contact info
+var PresidentsEmail="mikev@wam.umd.edu";
+var PresidentsName="Mike Velichansky";
+var VPEmail="T1Oracle@aol.com";
+var VPName="Bernard Igiri";
+
+// Enter advice for training at home here
+var advice = "Practice\n- sitting in Seiza (while watching TV perhaps?)\n- rolls and break falls (on a padded surface)\n- moving from Hanmi through the Aikido foot work, while maintaining aweness of one's balance";
+
+// JOIN INFO
+// Set to join info message
+var joinTxt="Aikido, the Japanese &quot;Way of Harmony&quot;, is a non-competetive, defensive martial art form that uses an adversary's own agressive energy against them. <p> Classes are free, and they are held in the HHP building on Mondays, Wednesdays, and Saturdays. Check the schedule for the times. <p> Beginners are always welcome. No experience, equiptment, or special clothing is required (long sweat pants are recommended).<p><b>Click Contact and e-mail the Club President for further info.</b>";
+
+// Do not edit from here to...
+function QandA( Q,  A)
+{
+	this.question=A;
+	this.answer=Q;
+}
+var n=0;
+var terms=new Array();
+// here
+
+// Set to the list of questions and answers in the terms section
+// format terms[n++]=new QandA(question,answer)
+// note replace all " with &quot;
+terms[n++]=new QandA("-Basic Terms","");
+terms[n++]=new QandA("Nage","The one doing the technique (usually not the attacker)");
+terms[n++]=new QandA("Uke","The one the technique is done to (usually the attacker)");
+terms[n++]=new QandA("Irimi","Entering");
+terms[n++]=new QandA("Tenkan","Turning (&quot;irimi tenkan&quot;)");
+terms[n++]=new QandA("Omote","In front");
+terms[n++]=new QandA("Ura","Behind");
+terms[n++]=new QandA("Atemi","Strike");
+terms[n++]=new QandA("Hanmi","&quot;Ready&quot; stance (left hanmi = left foot forward)");
+terms[n++]=new QandA("Seiza","Sitting position on your knees");
+terms[n++]=new QandA("Suwari waza","Aikido technique done from kneeling position");
+terms[n++]=new QandA("&quot;Onegai shimasu&quot;","&quot;Please let me train with you&quot; (loose translation)");
+terms[n++]=new QandA("-Control Techniques","");
+terms[n++]=new QandA("Ikkyo","First form");
+terms[n++]=new QandA("Nikyo","Second form");
+terms[n++]=new QandA("Sankyo","Third form");
+terms[n++]=new QandA("Yonkyo","Fourth form");
+terms[n++]=new QandA("Gokyo","Fifth form");
+terms[n++]=new QandA("-Basic Attacks","");
+terms[n++]=new QandA("Katate dori","Wrist grab");
+terms[n++]=new QandA("Kata dori","Shoulder grab");
+terms[n++]=new QandA("Shomenuchi","Strike to the top of the head");
+terms[n++]=new QandA("Yokomenuchi","Strike to the side of the neck");
+terms[n++]=new QandA("Munetski","Straight punch to the chest");
+terms[n++]=new QandA("Mensuki","Straight punch to the face");
+terms[n++]=new QandA("-Basic Throws","");
+terms[n++]=new QandA("Irimi nage","Entering throw");
+terms[n++]=new QandA("Kaiten nage","Rotary throw");
+terms[n++]=new QandA("Kokyu nage","&quot;Breath&quot; throw");
+terms[n++]=new QandA("Koshi nage","Hip Throw");
+terms[n++]=new QandA("Kote gaeshi","Wrist turning throw");
+terms[n++]=new QandA("Shiho nage","&quot;Four direction&quot; throw");
+terms[n++]=new QandA("Sumi otoshi","&quot;Corner drop&quot; throw");
+terms[n++]=new QandA("Tenchi nage","&quot;Heaven and earth&quot; throw");
+
+/**********************DO NOT EDIT BELOW*******************/
+var active=0;
+/*
+Textual Tooltip Script- 
+© Dynamic Drive (www.dynamicdrive.com)
+For full source code, installation instructions,
+100's more DHTML scripts, and Terms Of
+Use, visit dynamicdrive.com
+*/
+
+
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers){
+appear()
+setTimeout("window.onresize=regenerate",450)
+if (active==1)
+	intializemarquee();
+}
+}
+
+function changetext(whichcontent){
+
+if (document.all||document.getElementById){
+cross_el=document.getElementById? document.getElementById("descriptions"):document.all.descriptions
+cross_el.innerHTML=''+whichcontent+''
+}
+else if (document.layers){
+document.d1.document.d2.document.write(''+whichcontent+'')
+document.d1.document.d2.document.close()
+}
+
+}
+
+function appear(){
+document.d1.visibility='show'
+}
+
+function StartShow()
+{
+	regenerate2();
+	Play(1);
+}
+
+function Play(i)
+{
+	var image="images/photos/"
+	if (i>numOfPics)
+		i=1;
+	if (i<100)
+		image+="0";
+	if (i<10)
+		image+="0";
+	image+=i+".jpg";
+	document.display.src=image;
+	setTimeout("Play("+(i+1)+")",picDelay);
+}	
+
+window.onload=StartShow
+
+//**********************************************************
+//**********************************************************
+
+<!--
+//Specify the marquee contents
+//var marqueecontents='The Aikido Club Website is now up and running.'
+
+/*
+Cross browser marquee script II- 
+© Dynamic Drive (www.dynamicdrive.com)
+For full source code, installation instructions,
+100's more DHTML scripts, and Terms Of
+Use, visit dynamicdrive.com
+*/
+
+
+//Specify the marquee's width (in pixels)
+var marqueewidth=150
+//Specify the marquee's height
+var marqueeheight=180
+//Specify the marquee's scroll speed (larger is faster)
+var speed=2
+
+
+
+function regenerateM(){
+window.location.reload()
+}
+function regenerateM2(){
+if (document.layers){
+setTimeout("window.onresize=regenerateM",450)
+intializemarquee()
+}
+}
+
+function intializemarquee(){
+document.cmarquee01.document.cmarquee02.document.write(marqueecontents)
+document.cmarquee01.document.cmarquee02.document.close()
+thelength=document.cmarquee01.document.cmarquee02.document.height
+scrollit()
+}
+
+function scrollit(){
+if (document.cmarquee01.document.cmarquee02.top>=thelength*(-1)){
+document.cmarquee01.document.cmarquee02.top-=speed
+setTimeout("scrollit()",100)
+}
+else{
+document.cmarquee01.document.cmarquee02.top=marqueeheight
+scrollit()
+}
+}
+
+//window.onload=regenerate
+//-->
+
+function News()
+{
+  active==1;
+  var newstxt='<table background="images/updates.gif" align="center" width="200" border="0" cellpadding="0" cellspacing="0">        <tr>           <td width="200" height="286" align="center">';
+  if (document.all)
+  	newstxt+='<marquee direction="up" scrollAmount=2 style="width:150;height:180" align="center"><center><big>'+marqueecontents+'</big></center></marquee>';
+  newstxt+='\n            <ilayer width=&{marqueewidth}; height=&{marqueeheight}; name="cmarquee01"> \n            <layer name="cmarquee02" width=&{marqueewidth}; height=&{marqueeheight};></layer></td></tr></table>';
+  
+  if (document.layers)
+  {
+  	var win=window.open("scroller.html","uppop","width=200,height=286,location=no,directories=no,toolbar=no,resizable=no,menubar=no,scrollbars=no");
+	win.focus();
+  }
+  else
+  	changetext(newstxt);
+}
+
+function Schedule()
+{
+  active=2;
+  var outtext='<table background="images/schedule.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="8"><tr> <td width="200" height="286" valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="87" height="17"><param name=movie value="text/schedule.swf"><param name=quality value=high><param name="BGCOLOR" value=""><param name="SCALE" value="exactfit"><embed src="text/schedule.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" scale="exactfit" width="87" height="17" bgcolor=""></embed></object><br><hr><table width="100%" border="0" cellspacing="0" cellpadding="0">'+classSchedule+'<tr><td colspan="2">&nbsp;</td></tr><tr><td colspan="2"><b>Events</b></td></tr><tr><td>'+(event1Title? (event1Title):'None')+(event1Title? '</td><td align=right>':'&nbsp;')+(event1MoreInfo? ' <a href="javascript:MoreInfo(0);">more info</a>':'&nbsp;')+'</td></tr><tr><td>'+event1Location+'</td><td align=right>'+event1Date+' '+event1Time+'</td></tr><tr><td>'+(event2Title? (event2Title):'')+(event2Title? '</td><td align=right>':'&nbsp;')+(event2MoreInfo? ' <a href="javascript:MoreInfo(1);">more info</a>':'&nbsp;')+'</td></tr><tr><td>'+event2Location+'</td><td align=right>'+event2Date+' '+event2Time+'</td></tr><tr><td>'+(event3Title? (event3Title):'')+(event3Title? '</td><td align=right>':'&nbsp;')+(event3MoreInfo? ' <a href="javascript:MoreInfo(2);">more info</a>':'&nbsp;')+'</td></tr><tr><td>'+event3Location+'</td><td align=right>'+event3Date+' '+event3Time+'</td></tr></table></td></tr></table>'
+  changetext(outtext);
+}
+
+function MoreInfo(index)
+{
+	active=3;
+	var text=new Array(event1MoreInfo,event2MoreInfo,event3MoreInfo);
+	changetext('<table background="images/schedule.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="8"><tr> <td width="200" height="286" valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="87" height="17"><param name=movie value="text/schedule.swf"><param name=quality value=high><param name="BGCOLOR" value=""><param name="SCALE" value="exactfit"><embed src="text/schedule.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" scale="exactfit" width="87" height="17" bgcolor=""></embed> </object><br><hr><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td><b>More Info</b></td><td align="right"><a href="javascript:Schedule();">Back</a></td></tr><tr><td colspan="2">'+text[index]+'</td></tr></table></td></tr></table>');
+}
+
+function Join()
+{
+	active=4;
+	changetext('<table background="images/schedule.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="8"><tr><td width="200" height="286" valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="98" height="17"><param name=movie value="text/joinInfo.swf"><param name=quality value=high><param name="BGCOLOR" value=""><param name="SCALE" value="exactfit"><embed src="text/joinInfo.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" scale="exactfit" width="98" height="17" bgcolor=""></embed></object><br><hr><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td height="286" valign="top"><font size="2">'+joinTxt+'</font></td></tr></table></td></tr></table>');
+}
+
+function Lessons()
+{
+	active=5;
+	changetext('<table background="images/ueshiba.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="0"><tr><td width="200" height="286" valign="top"><table border="0" cellpadding="0" cellspacing="0"><tr><td height="201" width="50"></td><td width="100"></td><td width="17"></td></tr><tr><td height="72"></td><td valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22"><param name=movie value="buttons/terms.swf"><param name=quality value=high><param name="BGCOLOR" value=""><embed src="buttons/terms.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor=""></embed></object><br><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22"><param name=movie value="buttons/on_your_own.swf"><param name=quality value=high><param name="BGCOLOR" value=""><embed src="buttons/on_your_own.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor=""></embed></object></td><td></td></tr></table></td></tr></table>');
+}
+
+function Terms()
+{
+	active=5;
+	var text='<table background="images/ueshiba.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="0"><tr><td width="200" height="286" valign="top"><table border="0" cellpadding="0" cellspacing="0"><tr><td height="19" width="15"></td><td width="76"></td><td width="87"></td></tr><tr><td height="55"></td><td valign="top"><form name="form1" method="post" action=""><input type="button" name="Button" value="Back" onclick="Lessons();"></form></td><td></td></tr><tr><td height="62"></td><td></td><td></td></tr><tr><td height="137"></td><td valign="bottom" colspan="2"><form name="lesson" method="post" action=""><p><textarea name="answer" cols="18" rows="3" wrap="VIRTUAL"></textarea><br><select name="select" size="1" onchange="document.lesson.answer.value=this.options[this.selectedIndex].value">';
+	var len=terms.length;
+	for (var i=0;i<len;i++)
+		text+='<option value="'+terms[i].question+'">'+terms[i].answer+'</option>';
+	text+='</select></p></form></td></tr></table></td></tr></table>';
+	changetext(text);
+}
+
+
+
+function OnYourOwn()
+{
+	active=5;
+	changetext('<table background="images/ueshiba.jpg" align="center" width="200" border="0" cellpadding="0" cellspacing="0"><tr><td width="200" height="286" valign="top"><table border="0" cellpadding="0" cellspacing="0"><tr><td height="19" width="15"></td><td width="76"></td><td width="87"></td></tr><tr><td height="55"></td><td valign="top"><form name="form1" method="post" action=""><input type="button" name="Button" value="Back" onclick="Lessons();"></form></td><td></td></tr><tr><td height="62"></td><td></td><td></td></tr><tr><td height="137"></td><td valign="bottom" colspan="2"><form name="lesson" method="post" action=""><p><textarea name="answer" cols="18" rows="4" wrap="VIRTUAL">'+advice+'</textarea></p></form></td></tr></table></td></tr></table>');
+}
+
+function Contact()
+{
+	changetext('<table background="images/email.gif" align="center" width="200" border="0" cellpadding="0" cellspacing="0"><tr><td width="200" height="286" valign="middle"><table width="200" border="0" cellpadding="0" cellspacing="0"><tr><td width="200" height="140" align="center"><p><a href="mailto:'+PresidentsEmail+'">President<br>'+PresidentsName+'</a></p><p><a href="mailto:'+VPEmail+'">Vice President<br>'+VPName+'</a></p></td></tr></table></td></tr></table>');
+}
+	
+
+//**********************************************************
+//**********************************************************
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table align="center" width="701" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td valign="top" height="119" colspan="5" align="center"> <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="368" height="53">
+        <param name=movie value="text/umd.swf">
+        <param name=quality value=high>
+        <param name="BGCOLOR" value="">
+        <param name="SCALE" value="exactfit">
+        <embed src="text/umd.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" scale="exactfit" width="368" height="53" bgcolor="">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="308" height="63">
+        <param name=movie value="text/aikido_club.swf">
+        <param name=quality value=high>
+        <param name="BGCOLOR" value="">
+        <param name="SCALE" value="exactfit">
+        <embed src="text/aikido_club.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" scale="exactfit" width="308" height="63" bgcolor="">
+        </embed> 
+      </object> </td>
+  </tr>
+  <tr> 
+    <td width="346" height="11"></td>
+    <td width="10"></td>
+    <td width="234"></td>
+    <td width="11"></td>
+    <td width="100"></td>
+  </tr>
+  <tr> 
+    <td height="286" valign="top"><img src="images/photos/001.jpg" width="346" height="286" name="display"></td>
+    <td></td>
+    <td valign="top"> 
+      <ilayer id="d1" width="200" height="200" visibility="hide"> 
+      <layer id="d2" width="200" height="200"> 
+      <div id="descriptions" align="left"> 
+        <script><!--
+			News();
+//			-->
+</script>
+      </div>
+      </layer>
+      </ilayer>
+    </td>
+    <td></td>
+    <td valign="top"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="100" height="23">
+        <param name="BGCOLOR" value="">
+        <param name=movie value="buttons/news.swf">
+        <param name=quality value=high>
+        <embed src="buttons/news.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="100" height="23">
+        <param name="BGCOLOR" value="">
+        <param name=movie value="buttons/schedule.swf">
+        <param name=quality value=high>
+        <embed src="buttons/schedule.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="100" height="23">
+        <param name="BGCOLOR" value="">
+        <param name=movie value="buttons/join_info.swf">
+        <param name=quality value=high>
+        <embed src="buttons/join_info.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="100" height="23">
+        <param name="BGCOLOR" value="">
+        <param name=movie value="buttons/lesson.swf">
+        <param name=quality value=high>
+        <embed src="buttons/lesson.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="23">
+        <param name=movie value="buttons/dojo.swf">
+        <param name=quality value=high>
+        <param name="BGCOLOR" value="">
+        <embed src="buttons/dojo.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23" bgcolor="">
+        </embed> 
+      </object><br>
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="100" height="23">
+        <param name="BGCOLOR" value="">
+        <param name=movie value="buttons/contact.swf">
+        <param name=quality value=high>
+        <embed src="buttons/contact.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="23">
+        </embed> 
+      </object></td>
+  </tr>
+  <tr> 
+    <td height="134"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>News</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script>
+var marqueecontents=window.opener.marqueecontents;
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000"><table background="Images/updates.gif" align="center" width="200" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="200" height="286" align="center"><script language="JavaScript1.2">
+<!--
+//Specify the marquee contents
+
+
+/*
+Cross browser marquee script II- 
+© Dynamic Drive (www.dynamicdrive.com)
+For full source code, installation instructions,
+100's more DHTML scripts, and Terms Of
+Use, visit dynamicdrive.com
+*/
+
+
+//Specify the marquee's width (in pixels)
+var marqueewidth=150
+//Specify the marquee's height
+var marqueeheight=180
+//Specify the marquee's scroll speed (larger is faster)
+var speed=2
+
+if (document.all)
+document.write('<marquee direction="up" scrollAmount='+speed+' style="width:'+marqueewidth+';height:'+marqueeheight+'" align="center"><center><big>'+marqueecontents+'</big></center></marquee>')
+
+function regenerate(){
+window.location.reload()
+}
+function regenerate2(){
+if (document.layers){
+setTimeout("window.onresize=regenerate",450)
+intializemarquee()
+}
+}
+
+function intializemarquee(){
+document.cmarquee01.document.cmarquee02.document.write(marqueecontents)
+document.cmarquee01.document.cmarquee02.document.close()
+thelength=document.cmarquee01.document.cmarquee02.document.height
+scrollit()
+}
+
+function scrollit(){
+if (document.cmarquee01.document.cmarquee02.top>=thelength*(-1)){
+document.cmarquee01.document.cmarquee02.top-=speed
+setTimeout("scrollit()",100)
+}
+else{
+document.cmarquee01.document.cmarquee02.top=marqueeheight
+scrollit()
+}
+}
+
+window.onload=regenerate2
+//-->
+</script><ilayer width=&{marqueewidth}; height=&{marqueeheight}; name="cmarquee01"><layer name="cmarquee02" width=&{marqueewidth}; height=&{marqueeheight};></layer></ilayer></td>
+        </tr>
+      </table></body>
+</html>
